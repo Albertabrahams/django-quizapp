@@ -46,7 +46,7 @@ class Question(Update):
         verbose_name_plural = 'Questions'
     
 class Answer(Update):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
     answer_text = models.CharField(max_length=300, verbose_name='Answer Text')
     is_correct = models.BooleanField(default=False)
 
