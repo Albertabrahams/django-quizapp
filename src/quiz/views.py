@@ -3,10 +3,14 @@ from rest_framework import generics
 from .models import Category, Question, Quiz
 from .serializers import CategorySerializer, CategoryDetailSerializer, QuestionSerializer
 from .pagination import MyPagination
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
 class CategoryDetail(generics.ListAPIView):
     serializer_class = CategoryDetailSerializer
